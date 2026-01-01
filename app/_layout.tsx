@@ -1,24 +1,37 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export const unstable_settings = {
-  anchor: '(tabs)',
-};
+import { Stack } from "expo-router";
+import "./global.css";
+import {useFonts} from 'expo-font';
+import { useEffect } from 'react';
+import * as SplashScreen from 'expo-splash-screen'; // Keep this import
+import GlobalProvider from "@/lib/global-provider";
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
+  // Add fontError to handle potential font loading failures gracefully
+  const [fontsLoaded, fontError] = useFonts({
+    "Rubik-Bold": require('../assets/fonts/Rubik-Bold.ttf'),
+    "Rubik-ExtraBold": require('../assets/fonts/Rubik-ExtraBold.ttf'),
+    "Rubik-Light": require('../assets/fonts/Rubik-Light.ttf'),
+    "Rubik-Medium": require('../assets/fonts/Rubik-Medium.ttf'),
+    "Rubik-Regular": require('../assets/fonts/Rubik-Regular.ttf'),
+    "Rubik-SemiBold": require('../assets/fonts/Rubik-SemiBold.ttf'),
+  });
+
+  useEffect(() => {
+    // Hide the splash screen only when fonts are loaded OR if there was an error
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]); // Depend on both states
+
+  // Return null while waiting for fonts OR if an error occurred (to avoid rendering an incomplete UI)
+  if (!fontsLoaded ) {
+    return null;
+  }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+  <GlobalProvider>
+  <Stack screenOptions = {{headerShown:false}} />
+  </GlobalProvider>
   );
+
 }
