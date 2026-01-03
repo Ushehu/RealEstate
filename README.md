@@ -32,10 +32,10 @@ A modern, feature-rich mobile real estate application built with React Native an
 <img src="./screenshots/1-signin.jpg" width="250" alt="Sign In"> <img src="./screenshots/2-home.jpg" width="250" alt="Home Screen"> 
 
 ### Property Details & Search
-<img src="./screenshots/4-property-details.jpg" width="250" alt="Property Details"> <img src="./screenshots/6-search.jpg" width="250" alt="Search">
+<img src="./screenshots/3-property-details.jpg" width="250" alt="Property Details"> <img src="./screenshots/4-search.jpg" width="250" alt="Search">
 
 ### Explore & Profile
-<img src="./screenshots/7-explore.jpg" width="250" alt="Explore"> <img src="./screenshots/8-profile.jpg" width="250" alt="Profile">
+<img src="./screenshots/5-explore.jpg" width="250" alt="Explore"> <img src="./screenshots/6-profile.jpg" width="250" alt="Profile">
 
 </div>
 
